@@ -1,120 +1,71 @@
-import { useState } from "react";
-import QuickQuoteModal from "./QuickQuoteModal";
+import { Search, Handshake, LifeBuoy, Zap } from "lucide-react";
+import HeroSearchCard from "./HeroSearchCard";
+
+const trustArguments = [
+  { icon: Search, label: "Recherche personnalisée" },
+  { icon: Handshake, label: "Accompagnement humain" },
+  { icon: LifeBuoy, label: "Assistance jusqu'au départ" },
+  { icon: Zap, label: "Réponse rapide" },
+];
 
 export default function HeroSection() {
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <>
-      <section className="relative min-h-screen flex flex-col justify-start overflow-hidden">
-        {/* Background Video with Overlay */}
-        <div className="absolute inset-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            poster="/images/hero-bg-world-travel.webp"
-          >
-            <source src="/videos/hero.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50"></div>
-        </div>
+    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+      {/* Background Video with Overlay */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="/images/hero-bg-world-travel.webp"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay marine renforcé pour faire ressortir la carte blanche */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1B3E]/90 via-[#0D1B3E]/80 to-[#0D1B3E]/90"></div>
+      </div>
 
-        {/* Logo Watermark */}
-        <div className="absolute bottom-10 right-10 opacity-10 z-0 hidden md:block">
-          <img
-            src="/logo-khamci-officiel.png"
-            alt=""
-            className="w-40 md:w-56 h-auto"
-          />
-        </div>
+      {/* Logo Watermark */}
+      <div className="absolute bottom-10 right-10 opacity-10 z-0 hidden md:block">
+        <img
+          src="/logo-khamci-officiel.png"
+          alt=""
+          className="w-40 md:w-56 h-auto"
+        />
+      </div>
 
-        {/* Content — le header est sticky, le hero commence directement en dessous */}
-        <div className="relative z-10 container max-w-4xl text-white pt-8 pb-16">
-          <div className="animate-fade-in-up space-y-6">
-
-            {/* Titre principal */}
-            <div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3">
-                Organisez votre voyage partout dans le monde
-                <span className="block gradient-text mt-1">avec KHAMCI VOYAGES</span>
-              </h1>
-              <p className="text-base md:text-lg text-orange-300 font-semibold">
-                ⚡ Recevez votre demande de réservation en moins de 30 minutes &bull; Gratuit &amp; sans engagement
-              </p>
-            </div>
-
-            {/* Sous-titre */}
-            <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl">
-              Bienvenue chez <strong className="text-white">KHAMCI VOYAGES</strong>, votre agence de voyages
-              de confiance en Guinée depuis 2021. Spécialistes de la billetterie aérienne, de la réservation
-              d'hôtels et des voyages sur mesure, nous facilitons l'accès aux services de voyage
-              internationaux pour les particuliers et les entreprises.
+      {/* Contenu centré */}
+      <div className="relative z-10 container max-w-5xl mx-auto text-white py-16 md:py-20">
+        <div className="animate-fade-in-up space-y-8 text-center">
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              Votre prochain voyage commence ici
+            </h1>
+            <p className="text-lg text-white/80 max-w-3xl mx-auto">
+              Trouvez le meilleur billet avec Khamci Voyages — accompagnement humain,
+              réponse sous 24h, tarifs négociés.
             </p>
+          </div>
 
-            {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <button
-                onClick={() => setIsQuoteModalOpen(true)}
-                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold text-base md:text-lg px-8 py-4 rounded-lg shadow-2xl transition-all transform hover:scale-105"
-              >
-                🎯 DEMANDER UN SERVICE
-              </button>
-              <button
-                onClick={() => scrollToSection("destinations")}
-                className="bg-white/20 backdrop-blur-sm text-white border-2 border-white hover:bg-white/30 font-bold text-base md:text-lg px-8 py-4 rounded-lg transition-all"
-              >
-                Voir les Destinations
-              </button>
-            </div>
+          {/* Carte de recherche / devis */}
+          <HeroSearchCard />
 
-            {/* Réassurance */}
-            <div className="pt-6 border-t border-white/30">
-              <p className="text-sm font-semibold text-white/90 mb-3">
-                ✓ Pourquoi 500+ voyageurs nous font confiance ?
-              </p>
-              <div className="grid grid-cols-3 gap-2 text-sm">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 text-center border border-white/20">
-                  <p className="font-bold text-base md:text-lg">30min</p>
-                  <p className="text-xs text-white/80 leading-tight">Réponse garantie</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 text-center border border-white/20">
-                  <p className="font-bold text-base md:text-lg">100%</p>
-                  <p className="text-xs text-white/80 leading-tight">Gratuit &amp; sans engagement</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 text-center border border-white/20">
-                  <p className="font-bold text-base md:text-lg">2021</p>
-                  <p className="text-xs text-white/80 leading-tight">Fondée en Guinée</p>
-                </div>
+          {/* Arguments de confiance */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-2">
+            {trustArguments.map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="flex items-center justify-center gap-2 text-sm text-white/90"
+              >
+                <Icon className="w-5 h-5 text-orange-400 flex-shrink-0" />
+                <span className="font-medium">{label}</span>
               </div>
-            </div>
-
+            ))}
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce z-10">
-          <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-white rounded-full animate-pulse"></div>
-          </div>
-        </div>
-      </section>
-
-      <QuickQuoteModal
-        isOpen={isQuoteModalOpen}
-        onClose={() => setIsQuoteModalOpen(false)}
-        source="hero"
-      />
-    </>
+      </div>
+    </section>
   );
 }
