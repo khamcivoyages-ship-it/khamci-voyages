@@ -40,7 +40,7 @@ export function trackEvent(eventName: string, params?: Record<string, string | n
 export function trackDevisSubmission(params: {
   service_type: "vol" | "hotel" | "voiture" | "visa" | "team_building" | "autre";
   destination?: string;
-  source: "contact_form" | "quick_quote" | "page_vols" | "page_hotels" | "page_voitures" | "page_service";
+  source: "contact_form" | "quick_quote" | "page_vols" | "page_hotels" | "page_voitures" | "page_service" | "hero-search";
 }) {
   sendEvent("demande_devis", {
     service_type: params.service_type,

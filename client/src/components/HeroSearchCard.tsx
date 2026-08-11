@@ -49,7 +49,7 @@ export default function HeroSearchCard() {
 
   const [itinerary, setItinerary] = useState({
     departureCity: 'Conakry (CKY)',
-    arrivalCity: '',
+    arrivalCity: '', // vide au départ : évite un Conakry → Conakry
     departureDate: '',
     returnDate: '',
     passengers: '1',
@@ -76,7 +76,13 @@ export default function HeroSearchCard() {
   const validateItinerary = () => {
     const e: Record<string, string> = {};
     if (!itinerary.departureCity.trim()) e.departureCity = 'Ville de départ requise';
-    if (!itinerary.arrivalCity.trim()) e.arrivalCity = 'Destination requise';
+    if (!itinerary.arrivalCity.trim()) {
+      e.arrivalCity = 'Destination requise';
+    } else if (
+      itinerary.departureCity.trim().toLowerCase() === itinerary.arrivalCity.trim().toLowerCase()
+    ) {
+      e.arrivalCity = 'Le départ et la destination doivent être différents';
+    }
     if (!itinerary.departureDate) e.departureDate = 'Date de départ requise';
     if (isRoundTrip) {
       if (!itinerary.returnDate) {
@@ -129,7 +135,7 @@ export default function HeroSearchCard() {
       trackDevisSubmission({
         service_type: 'vol',
         destination: itinerary.arrivalCity || itinerary.departureCity,
-        source: 'quick_quote',
+        source: 'hero-search',
       });
       toast.success('Votre demande a bien été envoyée ! Réponse sous 24h.');
       setStep('confirmation');
