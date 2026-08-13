@@ -2,7 +2,19 @@ import { useState } from "react";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
 
-const FAQ_ITEMS = [
+type FaqQuestion = {
+  q: string;
+  a: string;
+  /** Lien complémentaire affiché sous la réponse (optionnel). */
+  link?: { label: string; href: string };
+};
+
+type FaqCategory = {
+  category: string;
+  questions: FaqQuestion[];
+};
+
+const FAQ_ITEMS: FaqCategory[] = [
   {
     category: "Devis & Réservation",
     questions: [
@@ -46,7 +58,8 @@ const FAQ_ITEMS = [
       },
       {
         q: "Proposez-vous des services pour les entreprises ?",
-        a: "Absolument. KHAMCI VOYAGES dispose d'une offre dédiée aux entreprises : gestion des déplacements professionnels, billets d'avion en volume, réservations d'hôtels pour vos équipes, location de véhicules avec chauffeur et organisation de voyages de team building. Contactez-nous pour un partenariat sur mesure.",
+        a: "Absolument. KHAMCI VOYAGES dispose d'une offre dédiée aux entreprises, Khamci Business : gestion des déplacements professionnels, billets d'avion en volume, réservations d'hôtels pour vos équipes, location de véhicules avec chauffeur et organisation de voyages de team building. Contactez-nous pour un partenariat sur mesure.",
+        link: { label: "Découvrir Khamci Business →", href: "/entreprises" },
       },
       {
         q: "Puis-je réserver un hôtel sans passer par un billet d'avion ?",
@@ -146,6 +159,14 @@ export default function FAQ() {
                     <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed pt-4">
                       {item.a}
                     </p>
+                    {item.link && (
+                      <Link
+                        href={item.link.href}
+                        className="inline-block mt-3 text-sm font-semibold text-[#FF6B35] hover:underline"
+                      >
+                        {item.link.label}
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>

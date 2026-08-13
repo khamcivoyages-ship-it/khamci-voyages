@@ -131,6 +131,7 @@ export default function Footer() {
                 <li><a href="/services/assurance-voyage" className="hover:text-[#FF6B35] transition-colors flex items-center gap-2"><span className="text-[#FF6B35]">🛡️</span> Assurance Voyage</a></li>
                 <li><a href="/services/visa" className="hover:text-[#FF6B35] transition-colors flex items-center gap-2"><span className="text-[#FF6B35]">📋</span> Accompagnement Visa</a></li>
                 <li><a href="/services/hadj-oumra" className="hover:text-[#FF6B35] transition-colors flex items-center gap-2"><span className="text-[#FF6B35]">🕌</span> Hadj &amp; Oumra</a></li>
+                <li><a href="/entreprises" className="hover:text-[#FF6B35] transition-colors flex items-center gap-2"><span className="text-[#FF6B35]">💼</span> Khamci Business (entreprises)</a></li>
               </ul>
             </div>
 

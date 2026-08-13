@@ -5,12 +5,21 @@ import { Palmtree, GraduationCap, Briefcase, Users, ArrowRight } from "lucide-re
  * Segmentation par profil de voyageur : chaque visiteur se reconnaît dans une
  * carte, ce qui qualifie le lead avant même le formulaire.
  *
- * Tous les CTA pointent pour l'instant vers #contact (formulaire de devis en
- * bas de page). Le profil « Affaires » évoque la future offre entreprise mais
- * sans lien dédié tant que la page B2B n'existe pas — pas de lien mort.
+ * Les CTA pointent vers #contact (formulaire de devis en bas de page), sauf
+ * le profil « Affaires » qui renvoie vers la page B2B dédiée /entreprises.
  */
 
-const profiles = [
+type Profile = {
+  icon: typeof Palmtree;
+  title: string;
+  description: string;
+  /** Destination du CTA ; #contact par défaut. */
+  href?: string;
+  /** Libellé du CTA ; « Demander un devis » par défaut. */
+  ctaLabel?: string;
+};
+
+const profiles: Profile[] = [
   {
     icon: Palmtree,
     title: "Vacances",
@@ -28,6 +37,8 @@ const profiles = [
     title: "Affaires",
     description:
       "Déplacements professionnels optimisés : flexibilité, rapidité, gestion des imprévus. Voir notre offre entreprise.",
+    href: "/entreprises",
+    ctaLabel: "Découvrir Khamci Business",
   },
   {
     icon: Users,
@@ -67,10 +78,10 @@ export default function TravelProfiles() {
                 </p>
 
                 <a
-                  href="#contact"
+                  href={profile.href ?? "#contact"}
                   className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-orange-600 dark:text-orange-400 hover:gap-2.5 transition-all duration-300"
                 >
-                  Demander un devis
+                  {profile.ctaLabel ?? "Demander un devis"}
                   <ArrowRight size={16} aria-hidden="true" />
                   <span className="sr-only"> pour un voyage {profile.title.toLowerCase()}</span>
                 </a>

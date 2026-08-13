@@ -15,6 +15,7 @@ import ParisPage from "./pages/ParisPage";
 import DubaiPage from "./pages/DubaiPage";
 import NewYorkPage from "./pages/NewYorkPage";
 import TeamBuildingPage from "./pages/TeamBuildingPage";
+import KhamciBusinessPage from "./pages/KhamciBusinessPage";
 import CasablancaPage from "./pages/CasablancaPage";
 import BangkokPage from "./pages/BangkokPage";
 import BarcelonaPage from "./pages/BarcelonaPage";
@@ -43,6 +44,7 @@ function Router() {
         <Route path="/hotels" component={HotelsPage} />
         <Route path="/voitures" component={CarsPage} />
         <Route path="/team-building" component={TeamBuildingPage} />
+        <Route path="/entreprises" component={KhamciBusinessPage} />
         <Route path="/destination/paris" component={ParisPage} />
         <Route path="/destination/dubai" component={DubaiPage} />
         <Route path="/destination/new-york" component={NewYorkPage} />
